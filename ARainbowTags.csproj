@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.1.2.0.1\lib\net472\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server - Atlas\SCPSL_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
@@ -72,6 +75,7 @@
     <Compile Include="RainbowSettings.cs" />
     <Compile Include="RainbowTagController.cs" />
     <Compile Include="RainbowTagMod.cs" />
+    <Compile Include="TagSequence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
