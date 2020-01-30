@@ -1,5 +1,5 @@
 # ARainbowTags
-Atlas port of RainbowTags, originally created by @sirmeepington. Makes server badges go through a spectrum of colours in SCP:SL. 
+Atlas port of RainbowTags, [originally](https://github.com/sirmeepington/RainbowTag/) created by [@SirMeepington](https://github.com/sirmeepington). Makes server badges go through a spectrum of colours in SCP:SL. 
 
 This mod makes use of [Atlas](https://gitlab.com/Androxanik/atlas/) for [SCP:SL](https://scpslgame.com/)
 
@@ -69,6 +69,6 @@ After the mod is loaded, simply run `atlas settings save` to flush the settings 
 
 If you get issues about `TAG FAIL`, you've either used a invalid / prohibited colour, of if you're certain you're not, restart the server; it might have an created a state issue.
 
-For a full list of colours available, you can type `colors` in your game or server console for a full list.
+For a full list of colours available, you can type `colors` in your game or server console.
 
 **If you have any other concerns, you can find me in the Atlas Discord, linked on the page (@MASONIC#3992).**
