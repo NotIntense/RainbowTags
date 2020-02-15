@@ -31,43 +31,43 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.1.2.0.1\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Lib.Harmony.1.2.0.1\lib\net472\0Harmony.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server - Atlas\SCPSL_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\References\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Athene, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Athene.1.0.0\lib\net452\Athene.dll</HintPath>
+    <Reference Include="Athene, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Athene.1.0.0\lib\net452\Athene.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Atlas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AtlasMod.1.0.0-rc-2\lib\net452\Atlas.dll</HintPath>
+    <Reference Include="Atlas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\AtlasMod.1.0.0-rc-2\lib\net452\Atlas.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="dnlib, Version=3.3.1.0, Culture=neutral, PublicKeyToken=50e96378b6e77999, processorArchitecture=MSIL">
-      <HintPath>..\packages\dnlib.3.3.1\lib\net45\dnlib.dll</HintPath>
+    <Reference Include="dnlib, Version=3.3.1.0, Culture=neutral, PublicKeyToken=50e96378b6e77999">
+      <HintPath>packages\dnlib.3.3.1\lib\net45\dnlib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mirror">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server - Atlas\SCPSL_Data\Managed\Mirror.dll</HintPath>
+      <HintPath>..\References\Mirror.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Synergize, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Synergize.0.1.0\lib\net452\Synergize.dll</HintPath>
+    <Reference Include="Synergize, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Synergize.0.1.0\lib\net452\Synergize.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server - Atlas\SCPSL_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\References\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server - Atlas\SCPSL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +80,12 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="References\Assembly-CSharp.dll" />
+    <Content Include="References\Mirror.dll" />
+    <Content Include="References\UnityEngine.CoreModule.dll" />
+    <Content Include="References\UnityEngine.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
