@@ -38,12 +38,12 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>..\References\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Athene, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Athene.1.0.0\lib\net452\Athene.dll</HintPath>
+    <Reference Include="Athene, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Athene.2.0.4\lib\net452\Athene.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Atlas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\AtlasMod.1.0.0-rc-2\lib\net452\Atlas.dll</HintPath>
+    <Reference Include="Atlas, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\AtlasMod.1.0.1\lib\net452\Atlas.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="dnlib, Version=3.3.1.0, Culture=neutral, PublicKeyToken=50e96378b6e77999">

@@ -16,9 +16,9 @@ namespace ARainbowTags
     [MetadataAttribute(
         "Rainbow Tags",
         "Adds rainbow scrolling colours to tags",
-        "AgentBlackout", "Androxanik"
+        "AgentBlackout", "Ashe"
     )]
-    /*[GitHubVersionCheck("AgentBlackout", "ARainbowTags", "%{0}\\.%{1}\\.%{2}")]*/ //Temporarily disabled for testing. 
+    /*[GitHubVersionCheck("AgentBlackout", "ARainbowTags", "%{0}\\.%{1}\\.%{2}")]*/ //Temporarily disabled for testing.
     public class RainbowTagMod : Mod<RainbowSettings>
     {
         private readonly HarmonyInstance _harmony; //Harmony for patching methods
@@ -45,7 +45,7 @@ namespace ARainbowTags
         }
 
         /// <summary>
-        /// Attempts to add a Rainbow controller to the game object. 
+        /// Attempts to add a Rainbow controller to the game object.
         /// </summary>
         /// <param name="playerObject">Player Object</param>
         private void AddRainbowController(GameObject playerObject)
