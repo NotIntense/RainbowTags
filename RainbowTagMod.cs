@@ -16,6 +16,8 @@ namespace ARainbowTags
 
 		public const string kCfgPrefix = "rainbowtags_";
 
+		public static string[] ActiveRoles;
+
 		public static void AddRainbowController(ReferenceHub player)
 		{
 			var component = player.GetComponent<RainbowTagController>();
@@ -30,6 +32,8 @@ namespace ARainbowTags
 			if (!Config.GetBool(kCfgPrefix + "enable", true))
 				return;
 
+			ActiveRoles = Config.GetStringList(kCfgPrefix + "activegroups").ToArray();
+			
 			RainbowTagController.interval = Config.GetFloat(kCfgPrefix + "taginterval", 0.5f);
 
 			if (Config.GetBool(kCfgPrefix + "usecustomsequence"))
@@ -39,12 +43,24 @@ namespace ARainbowTags
 			
 			foreach (var player in PlayerManager.players)
 			{
-				AddRainbowController(player.GetPlayer());
+				ReferenceHub hub = player.GetPlayer();
+
+				if (!hub.IsRainbowTagUser())
+					continue;
+				
+				AddRainbowController(hub);
 			}
 		}
+		
+		
+		
 
 		private void OnPlayerJoinEvent(PlayerJoinEvent ev)
 		{
+			if (!ev.Player.IsRainbowTagUser())
+				return;
+			
+			
 			AddRainbowController(ev.Player);
 		}
 
@@ -54,7 +70,11 @@ namespace ARainbowTags
 			{
 				UnityEngine.Object.Destroy(player.GetComponent<RainbowTagController>());
 			}
+
+			Events.PlayerJoinEvent -= OnPlayerJoinEvent;
 		}
+		
+		
 
 		public override void OnReload()
 		{
