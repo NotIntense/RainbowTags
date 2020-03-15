@@ -1,102 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Atlas;
-using Atlas.Versioning;
+using EXILED;
+using EXILED.Extensions;
 using Harmony;
 using UnityEngine;
 
-using Object = UnityEngine.Object;
-
 namespace ARainbowTags
 {
-    [MetadataAttribute(
-        "Rainbow Tags",
-        "Adds rainbow scrolling colours to tags",
-        "AgentBlackout", "Ashe"
-    )]
-    /*[GitHubVersionCheck("AgentBlackout", "ARainbowTags", "%{0}\\.%{1}\\.%{2}")]*/ //Temporarily disabled for testing.
-    public class RainbowTagMod : Mod<RainbowSettings>
-    {
-        private readonly HarmonyInstance _harmony; //Harmony for patching methods
-        public static RainbowTagMod Instance;
+	public class RainbowTagMod : EXILED.Plugin
+	{
+		public static RainbowTagMod Instance;
 
-        public RainbowTagMod(ModLoadInfo data) : base(data)
-        {
-            Instance = this;
+		public const string kCfgPrefix = "rainbowtags_";
 
-            _harmony = HarmonyInstance.Create(Id);
+		public static void AddRainbowController(ReferenceHub player)
+		{
+			var component = player.GetComponent<RainbowTagController>();
 
-            //Add a hook to the end of the authentication method so
-            //we only try to add the rainbow controller after we're
-            //sure that the user has a uid set.
-            _harmony.Patch(
-                AccessTools.Method(
-                    typeof(ServerRoles), nameof(ServerRoles.CallCmdServerSignatureComplete)
-                    ),
-                null,
-                new HarmonyMethod(
-                    AccessTools.Method(typeof(RainbowTagMod), nameof(CallCmdServerSignatureCompletePostFix))
-                    )
-            );
-        }
+			if (component != null) return;
+			player.gameObject.AddComponent<RainbowTagController>();
+		}
 
-        /// <summary>
-        /// Attempts to add a Rainbow controller to the game object.
-        /// </summary>
-        /// <param name="playerObject">Player Object</param>
-        private void AddRainbowController(GameObject playerObject)
-        {
-            var component = playerObject.GetComponent<RainbowTagController>();
 
-            if (component != null) return;
-            //Component already exists on the player, they already have a RainbowTag.
+		public override void OnEnable()
+		{
+			if (!Config.GetBool(kCfgPrefix + "enable", true))
+				return;
 
-            var refHub = ReferenceHub.GetHub(playerObject);
-            var sequence = Settings.GetTagSequence(refHub);
+			RainbowTagController.interval = Config.GetFloat(kCfgPrefix + "taginternal", 0.5f);
 
-            if (sequence == null) return;
+			if (Config.GetBool(kCfgPrefix + "usecustomsequence"))
+				RainbowTagController.Colors = Config.GetStringList(kCfgPrefix + "colorsequence").ToArray();
+			
+			Events.PlayerJoinEvent += OnPlayerJoinEvent;
+			
+			foreach (var player in PlayerManager.players)
+			{
+				AddRainbowController(player.GetPlayer());
+			}
+		}
 
-            playerObject.AddComponent<RainbowTagController>();
-            playerObject.GetComponent<RainbowTagController>().Sequence = sequence;
-        }
+		private void OnPlayerJoinEvent(PlayerJoinEvent ev)
+		{
+			AddRainbowController(ev.Player);
+		}
 
-        /// <summary>
-        /// Postfix which gets called after the authentication is complete.
-        /// </summary>
-        /// <param name="__instance">Instance of the ServerRoles component</param>
-        private static void CallCmdServerSignatureCompletePostFix(ServerRoles __instance)
-        {
-            Instance.AddRainbowController(__instance.gameObject);
-        }
+		public override void OnDisable()
+		{
+			foreach (var player in PlayerManager.players)
+			{
+				UnityEngine.Object.Destroy(player.GetComponent<RainbowTagController>());
+			}
+		}
 
-        /// <summary>
-        /// If the mod is loaded mid-game, will add rainbow controller to all in-game players.
-        /// </summary>
-        protected override void Start()
-        {
-            base.Start();
+		public override void OnReload()
+		{
+			OnDisable();
+		}
 
-            foreach (var player in PlayerManager.players)
-            {
-                AddRainbowController(player);
-            }
-        }
-
-        /// <summary>
-        /// Gets called when the Mod unloads. Removes any already set components.
-        /// </summary>
-        protected override void Destroy()
-        {
-            foreach (var player in PlayerManager.players)
-            {
-                Object.Destroy(player.GetComponent<RainbowTagController>());
-            }
-
-            base.Destroy();
-        }
-    }
+		public override string getName { get; } = "RainbowTags";
+	}
 }
