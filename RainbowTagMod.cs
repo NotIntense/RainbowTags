@@ -30,7 +30,7 @@ namespace ARainbowTags
 			if (!Config.GetBool(kCfgPrefix + "enable", true))
 				return;
 
-			RainbowTagController.interval = Config.GetFloat(kCfgPrefix + "taginternal", 0.5f);
+			RainbowTagController.interval = Config.GetFloat(kCfgPrefix + "taginterval", 0.5f);
 
 			if (Config.GetBool(kCfgPrefix + "usecustomsequence"))
 				RainbowTagController.Colors = Config.GetStringList(kCfgPrefix + "colorsequence").ToArray();
