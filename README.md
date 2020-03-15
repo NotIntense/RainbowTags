@@ -10,6 +10,8 @@ rainbowtags_enable: true #Should the plugin be enabled?
 rainbowtags_taginterval: 0.5 #Time between tag changes.
 rainbowtags_usecustomsequence: false #Should we use a custom color sequence?
 rainbowtags_colorsequence: pink, red, brown, silver, light_green #Color sequence to use. Must set UseCustomSequence to true.
+rainbowtags_activegroups: [owner, admin, moderator] #List of groups to enable RainbowTags for.
+
 ```
 **Valid Colours**:
 * pink
