@@ -40,6 +40,4 @@ rainbowtags_activegroups: [owner, admin, moderator] #List of groups to enable Ra
 
 #### FAQ
 
-If you get issues about `TAG FAIL`, you've either used a invalid / prohibited colour, of if you're certain you're not, restart the server; it might have an created a state issue.
-
-For a full list of colours available, you can type `colors` in your game or server console.
+If you get issues about `TAG FAIL`, you've either used a invalid / prohibited color. If you're certain you're not using a prohibited color, restart the server.
