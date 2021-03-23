@@ -1,20 +1,21 @@
-using System.Linq;
-using Exiled.API.Features;
-
 namespace RainbowTags
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Exiled.API.Features;
+
     public static class Extensions
     {
-        public static string GetGroupName(this UserGroup group)
-            => ServerStatic.GetPermissionsHandler().GetAllGroups().Where(p => p.Value == group).Select(p => p.Key)
-                .FirstOrDefault();
-
-        public static bool IsRainbowTagUser(this Player hub)
+        public static bool IsRainbowTagUser(this Player ply, out List<string> sequence)
         {
-            string group = ServerStatic.GetPermissionsHandler().GetUserGroup(hub.UserId)
-                .GetGroupName();
+            string group = ply.Group.GetGroupName();
 
-            return !string.IsNullOrEmpty(group) && RainbowTagMod.RainbowTagRef.Config.ActiveGroups.Contains(group);
+            sequence = null;
+            return !string.IsNullOrEmpty(group) &&
+                   RainbowTagMod.Instance.Config.Sequences.TryGetValue(group, out sequence);
         }
+
+        private static string GetGroupName(this UserGroup group) => ServerStatic.GetPermissionsHandler().GetAllGroups()
+            .FirstOrDefault(p => p.Value == group).Key;
     }
 }

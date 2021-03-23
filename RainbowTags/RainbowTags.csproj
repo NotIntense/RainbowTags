@@ -2,23 +2,17 @@
 
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\SubclassItems-4.0\Compile\net472\Assembly-CSharp-Publicized.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\SubclassItems-4.0\Compile\net472\UnityEngine.CoreModule.dll</HintPath>
-      </Reference>
+      <PackageReference Include="EXILED" Version="2.9.4-beta" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="EXILED" Version="2.1.29" />
-      <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.0">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+      <Reference Include="Assembly-CSharp" HintPath="$(EXILED_References)\Assembly-CSharp-Publicized.dll" Private="false" />
+      <Reference Include="Assembly-CSharp-firstpass" HintPath="$(EXILED_References)\Assembly-CSharp-firstpass.dll" Private="false" />
+      <Reference Include="UnityEngine.CoreModule" HintPath="$(EXILED_References)\UnityEngine.CoreModule.dll" Private="false" />
     </ItemGroup>
 
 </Project>

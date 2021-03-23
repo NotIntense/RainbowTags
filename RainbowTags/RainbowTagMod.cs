@@ -1,34 +1,36 @@
-﻿using Exiled.API.Features;
-
-namespace RainbowTags
+﻿namespace RainbowTags
 {
+    using System;
+    using Exiled.API.Features;
+
     public class RainbowTagMod : Plugin<Config>
     {
-        public static RainbowTagMod RainbowTagRef { get; private set; }
-        public override string Name => nameof(RainbowTags);
-        public override string Author => "FruitBoi";
-        private EventHandler _handler;
-
-        public RainbowTagMod()
+        private static readonly RainbowTagMod InstanceValue = new RainbowTagMod();
+        
+        private RainbowTagMod()
         {
-            RainbowTagRef = this;
         }
+
+        public static RainbowTagMod Instance { get; } = InstanceValue;
+
+        public override string Author { get; } = "FruitBoi";
+
+        public override string Name { get; } = nameof(RainbowTags);
+
+        public override Version RequiredExiledVersion { get; } = new Version(2, 9, 4);
+
+        public override Version Version { get; } = new Version();
 
         public override void OnEnabled()
         {
-            if (RainbowTagRef.Config.UseCustomSequence)
-                RainbowTagController.Colors = RainbowTagRef.Config.CustomSequence;
-
-            _handler = new EventHandler();
-            Exiled.Events.Handlers.Player.Verified += _handler.OnVerified;
-            Exiled.Events.Handlers.Server.RoundStarted += _handler.OnRoundStartEvent;
+            Exiled.Events.Handlers.Player.ChangingGroup += EventHandler.ChangingGroup;
+            base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
-            Exiled.Events.Handlers.Server.RoundStarted -= _handler.OnRoundStartEvent;
-            Exiled.Events.Handlers.Player.Verified -= _handler.OnVerified;
-            _handler = null;
+            Exiled.Events.Handlers.Player.ChangingGroup -= EventHandler.ChangingGroup;
+            base.OnDisabled();
         }
     }
 }

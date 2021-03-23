@@ -8,19 +8,19 @@ This mod makes use of [EXILED](https://github.com/galaxy119/EXILED/) for [SCP:SL
 ```yaml
 rainbow_tags:
   is_enabled: true
-  use_custom_sequence: false
   tag_interval: 0.5
-  active_groups:
-  - owner
-  - admin
-  - moderator
-  custom_sequence:
-  - red
-  - orange
-  - yellow
-  - green
-  - blue_green
-  - magenta
+  sequences:
+    owner:
+    - red
+    - orange
+    - yellow
+    - green
+    - blue_green
+    - magenta
+    admin:
+    - green
+    - silver
+    - crimson
 ```
 
 **Valid Colours**:
