@@ -23,13 +23,13 @@
 
         public override void OnEnabled()
         {
-            Exiled.Events.Handlers.Player.ChangingGroup += EventHandler.ChangingGroup;
+            Exiled.Events.Handlers.Player.Verified += EventHandler.OnVerified;
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
-            Exiled.Events.Handlers.Player.ChangingGroup -= EventHandler.ChangingGroup;
+            Exiled.Events.Handlers.Player.Verified -= EventHandler.OnVerified;
             base.OnDisabled();
         }
     }
