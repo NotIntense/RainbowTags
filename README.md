@@ -10,14 +10,14 @@ rainbow_tags:
   is_enabled: true
   tag_interval: 0.5
   sequences:
-    owner:
+    Owner:
     - red
     - orange
     - yellow
     - green
     - blue_green
     - magenta
-    admin:
+    Admin:
     - green
     - silver
     - crimson
