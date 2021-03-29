@@ -13,7 +13,7 @@
 
         public Dictionary<string, List<string>> Sequences { get; set; } = new Dictionary<string, List<string>>
         {
-            ["owner"] = new List<string>
+            ["Owner"] = new List<string>
             {
                 "red",
                 "orange",
@@ -22,7 +22,7 @@
                 "blue_green",
                 "magenta"
             },
-            ["admin"] = new List<string>
+            ["Admin"] = new List<string>
             {
                 "green",
                 "silver",
