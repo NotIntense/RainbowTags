@@ -7,7 +7,6 @@ namespace RainbowTags
     {
         public bool IsEnabled { get; set; } = true;
 
-        public bool EnableDebug { get; set; } = false;
         public float TagInterval { get; set; } = 0.5f;
 
         public Dictionary<string, string[]> Sequences { get; set; } = new Dictionary<string, string[]>
