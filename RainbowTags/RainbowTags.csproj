@@ -1,18 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net472</TargetFramework>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>RainbowTags</AssemblyName>
+    <Version>2.3.2</Version>
+    <PlatformTarget>x64</PlatformTarget>
+    <TargetFramework>net472</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Authors>FruitBoi &amp; Build &amp; iRebbok</Authors>
+    <Copyright>Copyright © $(Authors) 2020 - $([System.DateTime]::Now.ToString("yyyy"))</Copyright>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="EXILED" Version="2.9.4-beta" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EXILED" Version="2.9.4-beta" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <Reference Include="Assembly-CSharp" HintPath="$(EXILED_References)\Assembly-CSharp-Publicized.dll" Private="false" />
-      <Reference Include="Assembly-CSharp-firstpass" HintPath="$(EXILED_References)\Assembly-CSharp-firstpass.dll" Private="false" />
-      <Reference Include="UnityEngine.CoreModule" HintPath="$(EXILED_References)\UnityEngine.CoreModule.dll" Private="false" />
-    </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" HintPath="$(EXILED_References)\Assembly-CSharp-Publicized.dll" Private="false" />
+    <Reference Include="Assembly-CSharp-firstpass" HintPath="$(EXILED_References)\Assembly-CSharp-firstpass.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(EXILED_References)\UnityEngine.CoreModule.dll" Private="false" />
+  </ItemGroup>
 
 </Project>
