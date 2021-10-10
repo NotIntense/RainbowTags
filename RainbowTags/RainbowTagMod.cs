@@ -10,7 +10,7 @@ namespace RainbowTags
 {
     public class RainbowTagMod : Plugin<Config>
     {
-        public override Version RequiredExiledVersion { get; } = new Version(2, 9, 4);
+        public override Version RequiredExiledVersion { get; } = new Version(3, 0, 5);
 
         public override void OnEnabled()
         {
