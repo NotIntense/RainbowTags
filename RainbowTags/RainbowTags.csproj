@@ -1,25 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>RainbowTags</AssemblyName>
-    <Version>2.3.3</Version>
-    <PlatformTarget>x64</PlatformTarget>
     <TargetFramework>net472</TargetFramework>
+    <AssemblyName>RainbowTags</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<Version>2.3.3</Version>
     <Authors>FruitBoi &amp; Build &amp; iRebbok</Authors>
     <Copyright>Copyright © $(Authors) 2020 - $([System.DateTime]::Now.ToString("yyyy"))</Copyright>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EXILED" Version="3.0.5" />
+    <PackageReference Include="EXILED" Version="5.0.0-beta.5" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Assembly-CSharp" HintPath="$(EXILED_References)\Assembly-CSharp-Publicized.dll" Private="false" />
     <Reference Include="Assembly-CSharp-firstpass" HintPath="$(EXILED_References)\Assembly-CSharp-firstpass.dll" Private="false" />
-    <Reference Include="CommandSystem.Core" HintPath="$(EXILED_References)\CommandSystem.Core.dll" Private="false" />
+    <Reference Include="Mirror" HintPath="$(EXILED_References)\Mirror.dll" Private="false" />
     <Reference Include="UnityEngine.CoreModule" HintPath="$(EXILED_References)\UnityEngine.CoreModule.dll" Private="false" />
   </ItemGroup>
 
