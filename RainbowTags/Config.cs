@@ -9,6 +9,7 @@ namespace RainbowTags
 {
     using System.Collections.Generic;
     using System.ComponentModel;
+    using Exiled.API.Features;
     using Exiled.API.Interfaces;
 
     /// <inheritdoc />
@@ -29,7 +30,10 @@ namespace RainbowTags
             set
             {
                 if (value < 0.5f)
+                {
                     value = 0.5f;
+                    Log.Warn($"The {nameof(TagInterval)} config cannot be set below 0.5 and has been automatically clamped.");
+                }
 
                 tagInterval = value;
             }
