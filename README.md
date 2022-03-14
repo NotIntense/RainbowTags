@@ -1,7 +1,7 @@
 # ARainbowTags
 EXILED port of RainbowTags, [originally](https://github.com/sirmeepington/RainbowTag/) created by [@SirMeepington](https://github.com/sirmeepington). Makes server badges go through a spectrum of colours in SCP:SL. 
 
-This mod makes use of [EXILED](https://github.com/galaxy119/EXILED/) for [SCP:SL](https://scpslgame.com/)
+This mod makes use of [EXILED](https://github.com/Exiled-Team/EXILED/) for [SCP:SL](https://scpslgame.com/)
 
 ## Configuration
 
@@ -10,14 +10,14 @@ rainbow_tags:
   is_enabled: true
   tag_interval: 0.5
   sequences:
-    Owner:
+    owner:
     - red
     - orange
     - yellow
     - green
     - blue_green
     - magenta
-    Admin:
+    admin:
     - green
     - silver
     - crimson
