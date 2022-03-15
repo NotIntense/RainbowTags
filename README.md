@@ -1,4 +1,4 @@
-# ARainbowTags
+# RainbowTags
 EXILED port of RainbowTags, [originally](https://github.com/sirmeepington/RainbowTag/) created by [@SirMeepington](https://github.com/sirmeepington). Makes server badges go through a spectrum of colours in SCP:SL. 
 
 This mod makes use of [EXILED](https://github.com/Exiled-Team/EXILED/) for [SCP:SL](https://scpslgame.com/)
