@@ -8,19 +8,21 @@ This mod makes use of [EXILED](https://github.com/Exiled-Team/EXILED/) for [SCP:
 ```yaml
 rainbow_tags:
   is_enabled: true
-  tag_interval: 0.5
+  debug: false
+  color_interval: 0.5
   sequences:
-    owner:
     - red
     - orange
     - yellow
     - green
     - blue_green
     - magenta
-    admin:
-    - green
     - silver
     - crimson
+  ranks_with_rtags:
+    - owner
+    - moderator
+    - admin
 ```
 
 **Valid Colours**:
@@ -50,4 +52,4 @@ rainbow_tags:
 
 #### FAQ
 
-If you get issues about `TAG FAIL`, you've either used a invalid / prohibited color. If you're certain you're not using a prohibited color, restart the server.
+If you get issues about `TAG FAIL`, you've either used a invalid / prohibited color. If you're certain you're not using a prohibited color, remove the color and restart.
