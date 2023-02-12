@@ -11,8 +11,8 @@ namespace RainbowTags
         public override string Author { get; } = "xNexusACS (Ported From Build)";
         public override string Name { get; } = "RainbowTags";
         public override string Prefix { get; } = "RainbowTags";
-        public override Version Version { get; } = new Version(4, 0, 0);
-        public override Version RequiredExiledVersion { get; } = new Version(6, 0, 0);
+        public override Version Version { get; } = new(4, 0, 1);
+        public override Version RequiredExiledVersion { get; } = new(6, 0, 0);
 
         public override void OnEnabled()
         {
