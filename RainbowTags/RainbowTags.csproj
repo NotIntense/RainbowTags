@@ -100,7 +100,9 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Commands\ToggleRTag.cs" />
         <Compile Include="Config.cs" />
+        <Compile Include="Extensions.cs" />
         <Compile Include="MainClass.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="TagController.cs" />
