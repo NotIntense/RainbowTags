@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -11,8 +12,10 @@ public class MainClass : Plugin<Config>
     public override string Author => "xNexusACS (Ported From Build)";
     public override string Name => "RainbowTags";
     public override string Prefix => "RainbowTags";
-    public override Version Version { get; } = new(4, 0, 2);
-    public override Version RequiredExiledVersion { get; } = new(6, 0, 0);
+    public override Version Version { get; } = new(4, 1, 0);
+    public override Version RequiredExiledVersion { get; } = new(7, 0, 0);
+
+    public static List<Player> PlayersWithoutRTags { get; } = new();
 
     public override void OnEnabled()
     {
@@ -49,9 +52,9 @@ public class MainClass : Plugin<Config>
     }
     private void OnChangingGroup(ChangingGroupEventArgs ev)
     {
-        if (ev.NewGroup != null && ev.Player.Group == null && TryGetColors(GetGroupKey(ev.NewGroup), out var colors))
+        if (!PlayersWithoutRTags.Contains(ev.Player) && ev.NewGroup != null && ev.Player.Group == null && TryGetColors(GetGroupKey(ev.NewGroup), out var colors))
         {
-            Log.Debug("RTag: " + ev.Player.Nickname);
+            Log.Debug("RainbowTags: Added to " + ev.Player.Nickname);
             var rtController = ev.Player.GameObject.AddComponent<TagController>();
             rtController.Colors = colors;
             rtController.Interval = Config.ColorInterval;

@@ -1,15 +1,16 @@
 ﻿using Exiled.API.Features;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace RainbowTags;
 
 public static class Extensions
 {
-    // Taken from https://github.com/xNexus-ACS/HorizonCore
     public static void RemoveComponent(this Player player, Component component)
     {
-        if (player.GameObject.GetComponent(component.GetType()) != null)
-            Object.Destroy(component);
+        var componentInstance = player.GameObject.GetComponent(component.GetType());
+        if (componentInstance != null)
+            Object.Destroy(componentInstance);
     }
     
     public static void RemoveComponent<T>(this Player player) where T : Component

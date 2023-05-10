@@ -27,11 +27,13 @@ public class ToggleRTag : ICommand
             if (player.GameObject.TryGetComponent(out TagController rainbowTag))
             {
                 player.RemoveComponent(rainbowTag);
+                MainClass.PlayersWithoutRTags.Add(player);
                 response = "Your rainbow tag has been disabled!";
                 return true;
             }
 
             player.GameObject.AddComponent<TagController>();
+            MainClass.PlayersWithoutRTags.Remove(player);
             response = "Your rainbow tag has been enabled!";
             return true;
         }
