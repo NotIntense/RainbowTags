@@ -24,7 +24,7 @@ public class ToggleRTag : ICommand
                 return false;
             }
 
-            if (!MainClass.Instance.Config.RanksWithRTags.Contains(player.RankName))
+            if (!MainClass.Instance.Config.RanksWithRTags.Contains(player.GroupName))
             {
                 response = "You must be a member of a rank with a rainbow tag to use this command!";
                 return false;
