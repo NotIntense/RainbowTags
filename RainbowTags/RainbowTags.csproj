@@ -37,44 +37,47 @@
         <Reference Include="Assembly-CSharp">
           <HintPath>..\..\..\Downloads\dev\Assembly-CSharp-Publicized.dll</HintPath>
         </Reference>
+        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
+        </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
           <HintPath>..\..\..\Downloads\dev\Assembly-CSharp-firstpass.dll</HintPath>
         </Reference>
         <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\CommandSystem.Core.dll</HintPath>
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\CommandSystem.Core.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.API, Version=7.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\Exiled.API.dll</HintPath>
+        <Reference Include="Exiled.API, Version=7.0.5.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Exiled.API.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.CreditTags, Version=7.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\Exiled.CreditTags.dll</HintPath>
+        <Reference Include="Exiled.CreditTags, Version=7.0.5.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Exiled.CreditTags.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.CustomItems, Version=7.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\Exiled.CustomItems.dll</HintPath>
+        <Reference Include="Exiled.CustomItems, Version=7.0.5.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Exiled.CustomItems.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.CustomRoles, Version=7.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\Exiled.CustomRoles.dll</HintPath>
+        <Reference Include="Exiled.CustomRoles, Version=7.0.5.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Exiled.CustomRoles.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.Events, Version=7.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\Exiled.Events.dll</HintPath>
+        <Reference Include="Exiled.Events, Version=7.0.5.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Exiled.Events.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.Loader, Version=7.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\Exiled.Loader.dll</HintPath>
+        <Reference Include="Exiled.Loader, Version=7.0.5.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Exiled.Loader.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.Permissions, Version=7.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\Exiled.Permissions.dll</HintPath>
+        <Reference Include="Exiled.Permissions, Version=7.0.5.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Exiled.Permissions.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.Updater, Version=3.1.2.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\Exiled.Updater.dll</HintPath>
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\Exiled.Updater.dll</HintPath>
         </Reference>
         <Reference Include="Mirror">
           <HintPath>..\..\..\Downloads\dev\Mirror-Publicized.dll</HintPath>
         </Reference>
         <Reference Include="NorthwoodLib, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\NorthwoodLib.dll</HintPath>
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\NorthwoodLib.dll</HintPath>
         </Reference>
         <Reference Include="PluginAPI, Version=12.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\EXILED.7.0.0-rc.1\lib\net48\PluginAPI.dll</HintPath>
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\PluginAPI.dll</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
@@ -94,6 +97,9 @@
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
           <HintPath>..\..\..\Desktop\EXILED VISUAL STUDIO\Universe Refs\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+          <HintPath>..\packages\EXILED.7.0.5\lib\net48\YamlDotNet.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
