@@ -9,16 +9,18 @@ namespace RainbowTags;
 
 public class MainClass : Plugin<Config>
 {
-    public override string Author => "xNexusACS (Ported From Build)";
+    public static MainClass Instance { get; set; }
+    public override string Author => "NotIntense : (Ported From Build & xNexus-ACS)";
     public override string Name => "RainbowTags";
     public override string Prefix => "RainbowTags";
-    public override Version Version { get; } = new(4, 1, 0);
+    public override Version Version { get; } = new(1, 0, 0);
     public override Version RequiredExiledVersion { get; } = new(7, 0, 0);
 
     public static List<Player> PlayersWithoutRTags { get; } = new();
 
     public override void OnEnabled()
     {
+        Instance = this;
         Exiled.Events.Handlers.Player.ChangingGroup += OnChangingGroup;
         base.OnEnabled();
     }
@@ -27,6 +29,7 @@ public class MainClass : Plugin<Config>
     {
         Exiled.Events.Handlers.Player.ChangingGroup -= OnChangingGroup;
         base.OnDisabled();
+        Instance = null;
     }
 
     private bool TryGetColors(string rank, out string[] availableColors)
