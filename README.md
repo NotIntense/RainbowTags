@@ -1,7 +1,10 @@
+![Total Downloads](https://img.shields.io/github/downloads/NotIntense/RainbowTags/total)
+
+
 # RainbowTags
 EXILED port of RainbowTags from xNexus-ACS that was a port of [Build](https://github.com/BuildBoy12-SL), [originally](https://github.com/sirmeepington/RainbowTag/) created by [@SirMeepington](https://github.com/sirmeepington). Makes server badges go through a spectrum of colours in SCP:SL. 
 
-This plugin makes use of [EXILED 7](https://github.com/Exiled-Team/EXILED/releases/latest) for [SCP:SL](https://scpslgame.com/)
+This plugin makes use of [EXILED 8](https://github.com/Exiled-Team/EXILED/releases/latest) for [SCP:SL](https://scpslgame.com/)
 
 ## Configuration
 
