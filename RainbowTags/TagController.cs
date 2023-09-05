@@ -63,12 +63,12 @@ public class TagController : MonoBehaviour
         for (; ; )
         {
             int num;
-            for (var z = 0; z < _intervalInFrames; z = num + 1)
+            for (int z = 0; z < _intervalInFrames; z = num + 1)
             {
                 yield return 0f;
                 num = z;
             }
-            var text = RollNext();
+            string text = RollNext();
             if (string.IsNullOrEmpty(text))
             {
                 break;
