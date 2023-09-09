@@ -37,6 +37,17 @@ public class MainClass : Plugin<Config>
         availableColors = Config.Sequences;
         return !string.IsNullOrEmpty(rank) && Config.RanksWithRTags.Contains(rank);
     }
+
+    private bool TryGetCustomColors(string rank, out string[] availableColors)
+    {
+        if (Config.GroupSequences[rank] == null)
+        {
+            availableColors = null;
+            return false;
+        }
+        availableColors = Config.GroupSequences[rank].ToArray();
+        return !string.IsNullOrEmpty(rank) && Config.RanksWithRTags.Contains(rank);
+    }
     private bool EqualsTo(UserGroup thisGroup, UserGroup otherGroup)
     {
         return thisGroup.BadgeColor == otherGroup.BadgeColor && thisGroup.BadgeText == otherGroup.BadgeText &&
@@ -55,19 +66,39 @@ public class MainClass : Plugin<Config>
     }
     private void OnChangingGroup(ChangingGroupEventArgs ev)
     {
-        if (!PlayersWithoutRTags.Contains(ev.Player) && ev.NewGroup != null && ev.Player.Group == null && TryGetColors(GetGroupKey(ev.NewGroup), out var colors))
+        if (Config.GroupSpecificSequences)
         {
-            Log.Debug("RainbowTags: Added to " + ev.Player.Nickname);
-            var rtController = ev.Player.GameObject.AddComponent<TagController>();
-            rtController.Colors = colors;
-            rtController.Interval = Config.ColorInterval;
-            return;
+            if (!PlayersWithoutRTags.Contains(ev.Player) && ev.NewGroup != null && ev.Player.Group == null && TryGetCustomColors(GetGroupKey(ev.NewGroup), out var colors))
+            {
+                Log.Debug("RainbowTags: Added to " + ev.Player.Nickname);
+                var rtController = ev.Player.GameObject.AddComponent<TagController>();
+                rtController.Colors = colors;
+                rtController.Interval = Config.ColorInterval;
+                return;
+            }
+            if (TryGetColors(GetGroupKey(ev.NewGroup), out colors))
+            {
+                ev.Player.GameObject.GetComponent<TagController>().Colors = colors;
+                return;
+            }
+            Object.Destroy(ev.Player.GameObject.GetComponent<TagController>());
         }
-        if (TryGetColors(GetGroupKey(ev.NewGroup), out colors))
+        else
         {
-            ev.Player.GameObject.GetComponent<TagController>().Colors = colors;
-            return;
+            if (!PlayersWithoutRTags.Contains(ev.Player) && ev.NewGroup != null && ev.Player.Group == null && TryGetColors(GetGroupKey(ev.NewGroup), out var colors))
+            {
+                Log.Debug("RainbowTags: Added to " + ev.Player.Nickname);
+                var rtController = ev.Player.GameObject.AddComponent<TagController>();
+                rtController.Colors = colors;
+                rtController.Interval = Config.ColorInterval;
+                return;
+            }
+            if (TryGetColors(GetGroupKey(ev.NewGroup), out colors))
+            {
+                ev.Player.GameObject.GetComponent<TagController>().Colors = colors;
+                return;
+            }
+            Object.Destroy(ev.Player.GameObject.GetComponent<TagController>());
         }
-        Object.Destroy(ev.Player.GameObject.GetComponent<TagController>());
     }
 }
