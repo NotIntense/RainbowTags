@@ -33,16 +33,28 @@ public class ToggleRTag : ICommand
 
             if (player.GameObject.TryGetComponent(out TagController rainbowTag))
             {
-                player.RemoveComponent(rainbowTag);
-                MainClass.PlayersWithoutRTags.Add(player);
-                response = "Your rainbow tag has been disabled!";
-                return true;
+                if (rainbowTag.enabled)
+                {
+                    rainbowTag.enabled = false;
+                    player.RankColor = player.Group.BadgeColor;
+                    MainClass.PlayersWithoutRTags.Add(player);
+                    response = "Your rainbow tag has been disabled!";
+                    return true;
+                }
+                else
+                {
+                    rainbowTag.enabled = true;
+                    MainClass.PlayersWithoutRTags.Remove(player);
+                    response = "Your rainbow tag has been enabled!";
+                    return true;
+                }
             }
-
-            player.GameObject.AddComponent<TagController>();
-            MainClass.PlayersWithoutRTags.Remove(player);
-            response = "Your rainbow tag has been enabled!";
-            return true;
+            else
+            {
+                //I dont think this would ever happen
+                response = "Error, report to notintense on Discord!";
+                return false;
+            }
         }
 
         response = "You must be in-game to use this command!";
