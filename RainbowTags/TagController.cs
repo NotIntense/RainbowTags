@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Exiled.API.Features;
-using MEC;
 using UnityEngine;
 
 namespace RainbowTags;
@@ -10,10 +8,8 @@ public class TagController : MonoBehaviour
 {
     private Player _player;
     private int _position;
-    private float _interval;
-    private int _intervalInFrames;
     private string[] _colors;
-    private CoroutineHandle _coroutineHandle;
+    private float _timer;
     
     public string[] Colors
     {
@@ -24,57 +20,36 @@ public class TagController : MonoBehaviour
             _position = 0;
         }
     }
-    public float Interval
-    {
-        get => _interval;
-        set
-        {
-            _interval = value;
-            _intervalInFrames = Mathf.CeilToInt(value) * 50;
-        }
-    }
+
+    public float Interval;
+
     private void Awake()
     {
+        _timer = 0;
         _player = Player.Get(gameObject);
     }
-    private void Start()
-    { 
-        _coroutineHandle = Timing.RunCoroutine(UpdateColor().CancelWith(_player.GameObject));
-    }
-    private void OnDestroy()
+
+    private void Update()
     {
-        Timing.KillCoroutines(_coroutineHandle);
+        _timer += Time.deltaTime;
+
+        if (_timer >= Interval)
+        {
+            string text = RollNext();
+
+            if (!string.IsNullOrEmpty(text))
+                _player.RankColor = text;
+
+            _timer = 0;
+        }
     }
+
     private string RollNext()
     {
-        var num = _position + 1;
-        _position = num;
-        
-        if (num >= _colors.Length)
-            _position = 0;
-        
         if (_colors.Length == 0)
             return string.Empty;
-        
+
+        _position = (_position + 1) % _colors.Length;
         return _colors[_position];
-    }
-    private IEnumerator<float> UpdateColor()
-    {
-        for (; ; )
-        {
-            int num;
-            for (int z = 0; z < _intervalInFrames; z = num + 1)
-            {
-                yield return 0f;
-                num = z;
-            }
-            string text = RollNext();
-            if (string.IsNullOrEmpty(text))
-            {
-                break;
-            }
-            _player.RankColor = text;
-        }
-        Destroy(this);
     }
 }

@@ -12,6 +12,7 @@ public class ToggleRTag : ICommand
     public string Command { get; } = "togglerainbowtag";
     public string[] Aliases { get; } = { "trt" };
     public string Description { get; } = "Toggles your rainbow tag on or off";
+    public bool SanitizeResponse { get; } = false;
 
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
