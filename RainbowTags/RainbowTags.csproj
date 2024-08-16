@@ -65,8 +65,8 @@
     <Compile Include="TagController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EXILED">
-      <Version>8.9.5</Version>
+    <PackageReference Include="EXILEDOFFICIAL">
+      <Version>8.12.0-rc.3</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

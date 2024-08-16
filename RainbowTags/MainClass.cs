@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace RainbowTags;
@@ -13,7 +14,7 @@ public class MainClass : Plugin<Config>
     public override string Author => "NotIntense";
     public override string Name => "RainbowTags";
     public override string Prefix => "RainbowTags";
-    public override Version Version { get; } = new(2, 0, 2);
+    public override Version Version { get; } = new(2, 0, 5);
     public override Version RequiredExiledVersion { get; } = new(8, 0, 0);
     public static List<Player> PlayersWithoutRTags { get; } = new();
 
@@ -67,48 +68,33 @@ public class MainClass : Plugin<Config>
         return ServerStatic.PermissionsHandler._groups.FirstOrDefault(g => EqualsTo(g.Value, group)).Key ?? string.Empty;
     }
 
-    private void OnChangingGroup(ChangingGroupEventArgs ev)
-    {
-        AssignGroupColor(ev, Config.GroupSpecificSequences);
-    }
-
-    private void AssignGroupColor(ChangingGroupEventArgs ev, bool groupSequence)
+    public void OnChangingGroup(ChangingGroupEventArgs ev)
     {
         string[] colors;
 
-        if (groupSequence)
-        {                                                                                                           //Using custom try get colors
-            if (!PlayersWithoutRTags.Contains(ev.Player) && ev.NewGroup != null && ev.Player.Group == null)
-            {
-                TryGetCustomColors(GetGroupKey(ev.NewGroup), out colors);
-
-                Log.Debug("RainbowTags: Added to " + ev.Player.Nickname);
-                TagController rtController = ev.Player.GameObject.AddComponent<TagController>();
-                rtController.Colors = colors;
-                rtController.Interval = Config.ColorInterval;
-                return;
-            }
-
-            //Something went wrong
-            Log.Error($"Failed to assign RainbowTag to {ev.Player}!\n NewGroup Null? : {ev.NewGroup == null}\n PlayerGroup Null? : {ev.Player?.Group == null}\n Could get colors? : {TryGetCustomColors(GetGroupKey(ev.NewGroup), out _)}");
-            Object.Destroy(ev.Player.GameObject.GetComponent<TagController>());
-            return;
-        }
-        else
+        if (!PlayersWithoutRTags.Contains(ev.Player) && ev.NewGroup != null)
         {
-                                                                                                              //Using normal try get colors
-            if (!PlayersWithoutRTags.Contains(ev.Player) && ev.NewGroup != null && ev.Player.Group == null && TryGetColors(GetGroupKey(ev.NewGroup), out colors))
+            if (Config.GroupSpecificSequences)
+                TryGetCustomColors(GetGroupKey(ev.NewGroup), out colors);
+            else
+                TryGetColors(GetGroupKey(ev.NewGroup), out colors);
+
+            if (colors == null)
             {
-                Log.Debug("RainbowTags: Added to " + ev.Player.Nickname);
-                var rtController = ev.Player.GameObject.AddComponent<TagController>();
-                rtController.Colors = colors;
-                rtController.Interval = Config.ColorInterval;
+                //Something went wrong
+                Log.Error($"Failed to assign RainbowTag to {ev.Player}!\n NewGroup Null? : {ev.NewGroup == null}\n PlayerGroup Null? : {ev.Player?.Group == null}\n Could get colors? : {(Config.GroupSpecificSequences ? TryGetCustomColors(GetGroupKey(ev.NewGroup), out _) : TryGetColors(GetGroupKey(ev.NewGroup), out _))}");
+                Object.Destroy(ev.Player.GameObject.GetComponent<TagController>());
                 return;
             }
 
-            //Something went wrong
-            Log.Error($"Failed to assign RainbowTag to {ev.Player}!\n NewGroup Null? : {ev.NewGroup == null}\n PlayerGroup Null? : {ev.Player?.Group == null}\n Could get colors? : {TryGetCustomColors(GetGroupKey(ev.NewGroup), out _)}");
-            Object.Destroy(ev.Player.GameObject.GetComponent<TagController>());
+            Log.Debug("RainbowTags: Added to " + ev.Player.Nickname);
+
+            if (ev.Player.GameObject.TryGetComponent(out TagController controller))
+                Object.Destroy(controller);
+
+            TagController rtController = ev.Player.GameObject.AddComponent<TagController>();
+            rtController.Colors = colors;
+            rtController.Interval = Config.ColorInterval;
             return;
         }
     }

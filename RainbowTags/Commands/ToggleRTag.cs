@@ -1,6 +1,7 @@
 ﻿using System;
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.Events.EventArgs.Player;
 using RemoteAdmin;
 
 namespace RainbowTags.Commands;
@@ -18,7 +19,8 @@ public class ToggleRTag : ICommand
     {
         if (sender is PlayerCommandSender playerCommandSender)
         {
-            var player = Player.Get(playerCommandSender);
+            Player player = Player.Get(playerCommandSender);
+
             if (player == null)
             {
                 response = "You must be in-game to use this command!";
@@ -51,9 +53,10 @@ public class ToggleRTag : ICommand
             }
             else
             {
-                //I dont think this would ever happen
-                response = "Error, report to notintense on Discord!";
-                return false;
+                MainClass.PlayersWithoutRTags.Remove(player);
+                MainClass.Instance.OnChangingGroup(new ChangingGroupEventArgs(player, player.Group));
+                response = "Your rainbow tag has been enabled!";
+                return true;
             }
         }
 
