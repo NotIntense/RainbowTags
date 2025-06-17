@@ -65,7 +65,7 @@ public class MainClass : Plugin<Config>
         if (group == null)
             return string.Empty;
 
-        return ServerStatic.PermissionsHandler._groups.FirstOrDefault(g => EqualsTo(g.Value, group)).Key ?? string.Empty;
+        return ServerStatic.PermissionsHandler.Groups.FirstOrDefault(g => EqualsTo(g.Value, group)).Key ?? string.Empty;
     }
 
     public void OnChangingGroup(ChangingGroupEventArgs ev)
