@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace RainbowTags;
@@ -16,7 +15,6 @@ public class MainClass : Plugin<Config>
     public override string Prefix => "RainbowTags";
     public override Version Version { get; } = new(2, 0, 5);
     public override Version RequiredExiledVersion { get; } = new(8, 0, 0);
-    public static List<Player> PlayersWithoutRTags { get; } = new();
 
     public override void OnEnabled()
     {
@@ -53,11 +51,7 @@ public class MainClass : Plugin<Config>
 
     private bool EqualsTo(UserGroup thisGroup, UserGroup otherGroup)
     {
-        return thisGroup.BadgeColor == otherGroup.BadgeColor && thisGroup.BadgeText == otherGroup.BadgeText &&
-               thisGroup.Permissions == otherGroup.Permissions && thisGroup.Cover == otherGroup.Cover &&
-               thisGroup.HiddenByDefault == otherGroup.HiddenByDefault && thisGroup.Shared == otherGroup.Shared &&
-               thisGroup.KickPower == otherGroup.KickPower &&
-               thisGroup.RequiredKickPower == otherGroup.RequiredKickPower;
+        return thisGroup == otherGroup;
     }
 
     private string GetGroupKey(UserGroup group)
@@ -70,23 +64,22 @@ public class MainClass : Plugin<Config>
 
     public void OnChangingGroup(ChangingGroupEventArgs ev)
     {
-        string[] colors;
+        bool isRainbow = false;
+        string[] colors = null;
+        string groupKey = GetGroupKey(ev.NewGroup);
 
-        if (!PlayersWithoutRTags.Contains(ev.Player) && ev.NewGroup != null)
+        if (Config.GroupSpecificSequences)
         {
-            if (Config.GroupSpecificSequences)
-                TryGetCustomColors(GetGroupKey(ev.NewGroup), out colors);
-            else
-                TryGetColors(GetGroupKey(ev.NewGroup), out colors);
+            isRainbow = TryGetCustomColors(groupKey, out colors);
+        }
+        else
+        {
+            isRainbow = TryGetColors(groupKey, out colors);
+        }
 
-            if (colors == null)
-            {
-                //Something went wrong
-                Log.Error($"Failed to assign RainbowTag to {ev.Player}!\n NewGroup Null? : {ev.NewGroup == null}\n PlayerGroup Null? : {ev.Player?.Group == null}\n Could get colors? : {(Config.GroupSpecificSequences ? TryGetCustomColors(GetGroupKey(ev.NewGroup), out _) : TryGetColors(GetGroupKey(ev.NewGroup), out _))}");
-                Object.Destroy(ev.Player.GameObject.GetComponent<TagController>());
-                return;
-            }
 
+        if (isRainbow)
+        {
             Log.Debug("RainbowTags: Added to " + ev.Player.Nickname);
 
             if (ev.Player.GameObject.TryGetComponent(out TagController controller))
@@ -95,7 +88,14 @@ public class MainClass : Plugin<Config>
             TagController rtController = ev.Player.GameObject.AddComponent<TagController>();
             rtController.Colors = colors;
             rtController.Interval = Config.ColorInterval;
-            return;
+        }
+        else
+        {
+            if (ev.Player.GameObject.TryGetComponent(out TagController controller))
+            {
+                Log.Debug($"RainbowTags: Removing from {ev.Player.Nickname} because their new group '{groupKey}' is not in the list.");
+                Object.Destroy(controller);
+            }
         }
     }
 }
