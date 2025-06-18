@@ -39,21 +39,18 @@ public class ToggleRTag : ICommand
                 {
                     rainbowTag.enabled = false;
                     player.RankColor = player.Group.BadgeColor;
-                    MainClass.PlayersWithoutRTags.Add(player);
                     response = "Your rainbow tag has been disabled!";
                     return true;
                 }
                 else
                 {
                     rainbowTag.enabled = true;
-                    MainClass.PlayersWithoutRTags.Remove(player);
                     response = "Your rainbow tag has been enabled!";
                     return true;
                 }
             }
             else
             {
-                MainClass.PlayersWithoutRTags.Remove(player);
                 MainClass.Instance.OnChangingGroup(new ChangingGroupEventArgs(player, player.Group));
                 response = "Your rainbow tag has been enabled!";
                 return true;
