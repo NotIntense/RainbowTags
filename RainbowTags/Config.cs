@@ -18,8 +18,7 @@ public class Config : IConfig
         "moderator",
         "admin"
     };
-    public string[] Sequences { get; set; } = new[]
-    {
+    public string[] Sequences { get; set; } = {
         "red",
         "orange",
         "yellow",
@@ -30,7 +29,7 @@ public class Config : IConfig
         "crimson"
     };
 
-    public Dictionary<string, List<string>> GroupSequences { get; set; } = new Dictionary<string, List<string>>
+    public Dictionary<string, List<string>> GroupSequences { get; set; } = new()
     {
     { "owner", new List<string>() { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" } },
     { "moderator", new List<string>() { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" } },
