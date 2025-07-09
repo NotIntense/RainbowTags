@@ -12,8 +12,8 @@ public class MainClass : Plugin<Config>
     public override string Author => "NotIntense";
     public override string Name => "RainbowTags";
     public override string Prefix => "RainbowTags";
-    public override Version Version { get; } = new(3, 0, 0);
-    public override Version RequiredExiledVersion { get; } = new(8, 0, 0);
+    public override Version Version { get; } = new(3, 0, 1);
+    public override Version RequiredExiledVersion { get; } = new(9, 0, 0);
     public static List<Player> PlayersWithoutRTags { get; } = new();
 
     public override void OnEnabled()
@@ -35,13 +35,19 @@ public class MainClass : Plugin<Config>
         if (PlayersWithoutRTags.Contains(ev.Player)) 
             return;
             
-        string[] colors;
-            
-        if (Config!.GroupSpecificSequences)
-            TryGetCustomColors(GetGroupKey(ev.NewGroup), out colors);
-        else
-            TryGetColors(GetGroupKey(ev.NewGroup), out colors);
+        string[] colors = null;
 
+        if (Config!.GroupSpecificSequences)
+        {
+            if (!TryGetCustomColors(GetGroupKey(ev.NewGroup), out colors))
+                return;
+        }
+        else
+        {
+            if (!TryGetColors(GetGroupKey(ev.NewGroup), out colors))
+                return;
+        }
+        
         if (colors == null)
         {
             //Something went wrong

@@ -33,8 +33,7 @@ public static class Extensions
         if (string.IsNullOrEmpty(rank) || !MainClass.Instance.Config!.GroupSequences.TryGetValue(rank, out var sequence))
         {
             Log.Error($"A player with the rank '{rank}' does not have a custom group sequence! They will be given the default sequence colors.");
-            availableColors = MainClass.Instance.Config!.Sequences;
-            return false;
+            return TryGetColors(rank, out availableColors);
         }
 
         availableColors = sequence.ToArray();
